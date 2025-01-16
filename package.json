@@ -1,0 +1,9 @@
+{
+  "name": "powerplant-human",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.0",
+    "eventsource": "^2.0.2"
+  }
+}

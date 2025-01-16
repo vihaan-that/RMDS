@@ -1,0 +1,6 @@
+[submodule "RMDS-FrontEnd"]
+	path = RMDS-FrontEnd
+	url = https://github.com/vihaan-that/RMDS-FrontEnd
+[submodule "RMDS-Backend"]
+	path = RMDS-Backend
+	url = https://github.com/vihaan-that/RMDS-Backend
