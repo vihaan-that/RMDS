@@ -49,14 +49,34 @@ npm install
 
 For Backend (create `.env` in RMDS-Backend directory):
 ```
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-PORT=3001
+
+PORT=4000
+NODE_ENV=development
+
+# MongoDB Configuration
+MONGODB_URI=mongodb://localhost:27017/powerplant
+
+# JWT Configuration
+JWT_SECRET=your_jwt_secret_here
+JWT_EXPIRE=24h
+
+# Admin Configuration
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=SecureAdminPassword123
+
+# Logging Configuration
+LOG_LEVEL=debug
+
+# CORS Configuration (optional)
+# CORS_ORIGIN=http://localhost:3000
+
 ```
 
 For Frontend (create `.env.local` in RMDS-FrontEnd directory):
 ```
-NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_API_URL=http://localhost:4000
+NEXT_PUBLIC_WS_URL=ws://localhost:4000
+
 ```
 
 ## Running the Application
