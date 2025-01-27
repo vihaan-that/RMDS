@@ -29,7 +29,7 @@ PowerPlant_human/
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone --recursive [repository-url]
 cd PowerPlant_human
 ```
 
