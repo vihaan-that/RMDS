@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Data Stream</title>
+</head>
+<body>
+    <h1>Sensor Data Stream</h1>
+    <div id="status">Connecting...</div>
+    <div id="lastHeartbeat">Last Heartbeat: N/A</div>
+    <div id="sensorData">Sensor Data: N/A</div>
+
+    <script>
+        const url = `http://localhost:4000/api/live/sensor/6789d6f60a648c2efa22b18f`;
+        const eventSource = new EventSource(url);
+
+        eventSource.onopen = () => {
+            document.getElementById('status').innerText = 'Connected';
+        };
+
+        eventSource.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            document.getElementById('sensorData').innerText = `Sensor Data: ${JSON.stringify(data)}`;
+        };
+
+        eventSource.addEventListener('heartbeat', (event) => {
+            const data = JSON.parse(event.data);
+            document.getElementById('lastHeartbeat').innerText = `Last Heartbeat: ${new Date(data.timestamp).toLocaleString()}`;
+        });
+
+        eventSource.onerror = () => {
+            document.getElementById('status').innerText = 'Disconnected';
+        };
+    </script>
+</body>
+</html>
