@@ -1,0 +1,90 @@
+# RMDS Diagram Generation
+
+This folder contains code to generate various architecture diagrams for the RMDS Power Plant Monitoring System.
+
+## Architecture Overview
+
+### System Architecture
+![RMDS System Architecture](images/rmds_system_architecture.png)
+
+The system follows a three-tier architecture:
+- **Frontend (Next.js 13+)**: Dashboard UI with custom hooks (`useSensorData`, `useAssetData`) for data fetching and SSE client for real-time updates
+- **Backend (Express.js)**: RESTful API with controllers, middleware (Auth, Validation, Error Handler), and SensorEventManager for SSE broadcasting
+- **Database (MongoDB)**: Collections for Assets, Sensors, SensorValues, Incidents, and Users/Roles
+
+### Real-time Data Flow
+![RMDS Real-time Data Flow](images/rmds_realtime_dataflow.png)
+
+The real-time sensor streaming works as follows:
+1. User opens live data page
+2. Frontend establishes SSE connection
+3. SensorEventManager registers client
+4. Polling service queries MongoDB every 1 second
+5. New sensor values are returned
+6. Data is broadcast to all connected clients
+
+---
+
+## Files
+
+| File | Description | Output Format |
+|------|-------------|---------------|
+| `RMDS_Diagrams.md` | Mermaid diagram code | Markdown/SVG/PNG |
+| `generate_diagrams.py` | Python diagrams library | PNG images |
+| `plantuml_diagrams.py` | PlantUML definitions | PNG/SVG via PlantUML |
+| `drawio_generator.py` | Draw.io XML generator | .drawio files |
+
+## Quick Start
+
+### Option 1: Mermaid (Easiest - No Installation)
+1. Open `RMDS_Diagrams.md`
+2. Copy any diagram code block
+3. Paste at [Mermaid Live Editor](https://mermaid.live/)
+4. Export as PNG/SVG
+
+### Option 2: Python Diagrams Library
+```bash
+pip install diagrams
+python generate_diagrams.py
+# Output: rmds_architecture.png, rmds_dataflow.png, rmds_auth.png
+```
+
+### Option 3: PlantUML
+```bash
+# Install PlantUML
+brew install plantuml  # macOS
+# or download from https://plantuml.com/
+
+# Run the script to see diagram definitions
+python plantuml_diagrams.py
+
+# Copy output to https://www.plantuml.com/plantuml/uml/
+```
+
+### Option 4: Draw.io
+```bash
+python drawio_generator.py
+# Open .drawio files at https://app.diagrams.net/
+```
+
+## Available Diagrams
+
+1. **System Architecture** - High-level view of Frontend, Backend, Database
+2. **Data Flow (SSE)** - Real-time sensor data streaming flow
+3. **Entity Relationship** - Database schema and relationships
+4. **Authentication Flow** - JWT-based auth process
+5. **Component Architecture** - Frontend component hierarchy
+6. **API Routes Structure** - Backend endpoint organization
+7. **Deployment Architecture** - Infrastructure layout
+
+## Recommended Tools
+
+- **VS Code Extensions:**
+  - Markdown Preview Mermaid Support
+  - Draw.io Integration
+  - PlantUML
+
+- **Online Tools:**
+  - [Mermaid Live](https://mermaid.live/)
+  - [Draw.io](https://app.diagrams.net/)
+  - [PlantUML Server](https://www.plantuml.com/plantuml/)
