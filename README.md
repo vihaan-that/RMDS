@@ -2,6 +2,31 @@
 
 A real-time monitoring system for power plant assets and sensors, featuring a modern Next.js frontend and Express.js backend.
 
+## Architecture
+
+### System Architecture
+The system follows a three-tier architecture with a Next.js frontend, Express.js backend, and MongoDB database.
+
+![System Architecture](diagrams/images/rmds_system_architecture.png)
+
+**Key Components:**
+- **Frontend (Next.js 13+):** Dashboard UI, AuthContext, Custom Hooks (useSensorData, useAssetData), SSE Client
+- **Backend (Express.js):** API Routes, Middleware (Auth, Validation, Error Handler), Controllers, SensorEventManager for real-time broadcasting
+- **Database (MongoDB):** Assets, Sensors, SensorValues, Incidents, Users/Roles collections
+
+### Real-time Data Flow
+The system uses Server-Sent Events (SSE) for real-time sensor data streaming with a 1-second polling interval.
+
+![Data Flow Diagram](diagrams/images/rmds_dataflow.png)
+
+**Flow:**
+1. User opens live data page
+2. Frontend establishes SSE connection
+3. EventManager registers client
+4. Polling service queries DB every 1s
+5. New sensor values returned
+6. Data broadcast to all connected clients
+
 ## Features
 
 - Real-time asset monitoring with SSE (Server-Sent Events)

@@ -2,29 +2,6 @@
 
 This folder contains code to generate various architecture diagrams for the RMDS Power Plant Monitoring System.
 
-## Architecture Overview
-
-### System Architecture
-![RMDS System Architecture](images/rmds_system_architecture.png)
-
-The system follows a three-tier architecture:
-- **Frontend (Next.js 13+)**: Dashboard UI with custom hooks (`useSensorData`, `useAssetData`) for data fetching and SSE client for real-time updates
-- **Backend (Express.js)**: RESTful API with controllers, middleware (Auth, Validation, Error Handler), and SensorEventManager for SSE broadcasting
-- **Database (MongoDB)**: Collections for Assets, Sensors, SensorValues, Incidents, and Users/Roles
-
-### Real-time Data Flow
-![RMDS Real-time Data Flow](images/rmds_realtime_dataflow.png)
-
-The real-time sensor streaming works as follows:
-1. User opens live data page
-2. Frontend establishes SSE connection
-3. SensorEventManager registers client
-4. Polling service queries MongoDB every 1 second
-5. New sensor values are returned
-6. Data is broadcast to all connected clients
-
----
-
 ## Files
 
 | File | Description | Output Format |
